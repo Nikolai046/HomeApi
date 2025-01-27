@@ -8,9 +8,9 @@ namespace HomeApi.Contracts.Validation
     /// </summary>
     public class AddRoomRequestValidator : AbstractValidator<AddRoomRequest>
     {
-        public AddRoomRequestValidator() 
+        public AddRoomRequestValidator()
         {
-            RuleFor(x => x.Area).NotEmpty(); 
+            RuleFor(x => x.Area).NotEmpty();
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Voltage).NotEmpty();
             RuleFor(x => x.GasConnected).NotEmpty();

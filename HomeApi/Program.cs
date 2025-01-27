@@ -1,13 +1,13 @@
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using HomeApi;
 using HomeApi.Configuration;
+using HomeApi.Contracts.Validation;
+using HomeApi.Data;
+using HomeApi.Data.Repos;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using System.Reflection;
-using FluentValidation.AspNetCore;
-using HomeApi.Contracts.Validation;
-using HomeApi.Data.Repos;
-using HomeApi.Data;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var assembly = Assembly.GetAssembly(typeof(MappingProfile));
@@ -37,7 +37,6 @@ builder.Services.AddSingleton<IRoomRepository, RoomRepository>();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<HomeApiContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
-
 
 var app = builder.Build();
 

@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace HomeApi.Configuration;
+﻿namespace HomeApi.Configuration;
 
 /// <summary>
 /// Информация о нашем доме

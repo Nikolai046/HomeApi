@@ -10,8 +10,8 @@ namespace HomeApi.Data.Repos
     public class DeviceRepository : IDeviceRepository
     {
         private readonly HomeApiContext _context;
-        
-        public DeviceRepository (HomeApiContext context)
+
+        public DeviceRepository(HomeApiContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace HomeApi.Data.Repos
         public async Task<Device[]> GetDevices()
         {
             return await _context.Devices
-                .Include( d => d.Room)
+                .Include(d => d.Room)
                 .ToArrayAsync();
         }
 
@@ -32,7 +32,7 @@ namespace HomeApi.Data.Repos
         public async Task<Device> GetDeviceByName(string name)
         {
             return await _context.Devices
-                .Include( d => d.Room)
+                .Include(d => d.Room)
                 .Where(d => d.Name == name).FirstOrDefaultAsync();
         }
 
@@ -42,10 +42,10 @@ namespace HomeApi.Data.Repos
         public async Task<Device> GetDeviceById(Guid id)
         {
             return await _context.Devices
-                .Include( d => d.Room)
+                .Include(d => d.Room)
                 .Where(d => d.Id == id).FirstOrDefaultAsync();
         }
-        
+
         /// <summary>
         /// Добавить новое устройство
         /// </summary>
@@ -54,13 +54,13 @@ namespace HomeApi.Data.Repos
             // Привязываем новое устройство к соответствующей комнате перед сохранением
             device.RoomId = room.Id;
             device.Room = room;
-            
-            // Добавляем в базу 
+
+            // Добавляем в базу
             var entry = _context.Entry(device);
             if (entry.State == EntityState.Detached)
                 await _context.Devices.AddAsync(device);
-            
-            // Сохраняем изменения в базе 
+
+            // Сохраняем изменения в базе
             await _context.SaveChangesAsync();
         }
 
@@ -79,13 +79,13 @@ namespace HomeApi.Data.Repos
                 device.Name = query.NewName;
             if (!string.IsNullOrEmpty(query.NewSerial))
                 device.SerialNumber = query.NewSerial;
-            
-            // Добавляем в базу 
+
+            // Добавляем в базу
             var entry = _context.Entry(device);
             if (entry.State == EntityState.Detached)
                 _context.Devices.Update(device);
-            
-            // Сохраняем изменения в базе 
+
+            // Сохраняем изменения в базе
             await _context.SaveChangesAsync();
         }
 

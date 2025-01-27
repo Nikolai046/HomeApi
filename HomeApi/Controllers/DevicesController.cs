@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoMapper;
-using HomeApi.Contracts.Devices;
+﻿using AutoMapper;
 using HomeApi.Contracts.Models.Devices;
 using HomeApi.Data.Models;
 using HomeApi.Data.Queries;
