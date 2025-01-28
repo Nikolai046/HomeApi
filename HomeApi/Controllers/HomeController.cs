@@ -32,5 +32,6 @@ namespace HomeApi.Controllers
             // Вернём ответ
             return StatusCode(200, infoResponse);
         }
+
     }
 }
