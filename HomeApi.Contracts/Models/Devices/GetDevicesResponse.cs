@@ -1,5 +1,8 @@
 ﻿namespace HomeApi.Contracts.Models.Devices;
 
+/// <summary>
+/// Запрос для получения информации обо всех устройствах
+/// </summary>
 public class GetDevicesResponse
 {
     public int DeviceAmount { get; set; }
